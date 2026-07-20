@@ -14,6 +14,12 @@ public class Battlefield {
     private final char hit = 'X';
     private final char miss = 'M';
 
+    private static final String RESET = "\u001B[0m";
+    private static final String BLUE = "\u001B[34m";
+    private static final String GREEN = "\u001B[32m";
+    private static final String RED = "\u001B[31m";
+    private static final String WHITE = "\u001B[37m";
+
     private static final String TOO_CLOSE_ERROR_MSG = "Error! You placed it too close to another one. Try again:";
     private static final String WRONG_LENGTH_ERROR_MSG = "Error! Wrong length of the Submarine! Try again:";
     private static final String WRONG_COORDINATES_ERROR_MSG = "Error! You entered the wrong coordinates! Try again:";
@@ -91,12 +97,40 @@ public class Battlefield {
         for (int i = 0; i < 10; i++) {
             System.out.print((char) ('A' + i) + " ");
             for (int j = 0; j < 10; j++) {
-                System.out.print(battlefield[i][j] + " ");
+                System.out.print(toColoredDot(battlefield[i][j]) + " ");
             }
             System.out.println();
         }
     }
 
+    private String toColoredDot(char field) {
+        if (field == fog) {
+            return BLUE + "?" + RESET;
+        } else if (field == ship) {
+            return GREEN + "S" + RESET;
+        } else if (field == hit) {
+            return RED + "H" + RESET;
+        } else if (field == miss) {
+            return WHITE + "M" + RESET;
+        }
+
+        return String.valueOf(field);
+    }
+
+    public void printFogBattlefield() {
+        System.out.println("  1 2 3 4 5 6 7 8 9 10");
+        for (int i = 0; i < 10; i++) {
+            System.out.print((char) ('A' + i) + " ");
+            for (int j = 0; j < 10; j++) {
+                if (battlefield[i][j] == ship) {
+                    System.out.print(toColoredDot(fog) + " ");
+                } else {
+                    System.out.print(toColoredDot(battlefield[i][j]) + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
 
     public boolean placeShip(String shipCoordinates, String shipName) {
 
@@ -323,21 +357,6 @@ public class Battlefield {
             return column >= 1 && column <= 10;
         } catch (NumberFormatException e) {
             return false;
-        }
-    }
-
-    public void printFogBattlefield() {
-        System.out.println("  1 2 3 4 5 6 7 8 9 10");
-        for (int i = 0; i < 10; i++) {
-            System.out.print((char) ('A' + i) + " ");
-            for (int j = 0; j < 10; j++) {
-                if (battlefield[i][j] == ship) {
-                    System.out.print(fog + " ");
-                } else {
-                    System.out.print(battlefield[i][j] + " ");
-                }
-            }
-            System.out.println();
         }
     }
 }
