@@ -8,7 +8,7 @@ import static java.util.Map.entry;
 
 public class Battlefield {
 
-    private char[][] battlefield = new char[10][10];
+    private final char[][] battlefield = new char[10][10];
     private final char fog = '~';
     private final char ship = 'o';
     private final char hit = 'X';
@@ -27,12 +27,6 @@ public class Battlefield {
     private static final String MISS_MSG = "\nYou missed! Try again:";
     private static final String SUNK_MSG = "\nYou sank a ship! Specify a new target:";
     private static final String SUNK_LAST_MSG = "\nYou sank the last ship. You won. Congratulations!";
-    private static final String PASS_MSG = "\nPress Enter and pass the move to another player";
-    private static final String PLAYER1_TURN_MSG = "\nPlayer 1, it's your turn:";
-    private static final String PLAYER2_TURN_MSG = "\nPlayer 2, it's your turn:";
-
-
-
 
     public void askForPlacingShip() {
 

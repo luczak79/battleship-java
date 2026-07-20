@@ -11,7 +11,6 @@ public class Main {
     private static final String PLAYER2_TURN_MSG = "\nPlayer 2, it's your turn:";
     private static final String DIVIDER_MSG = "---------------------";
 
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -32,7 +31,6 @@ public class Main {
 
         System.out.println(PASS_MSG);
         scanner.nextLine();
-
 
         System.out.println("The game starts!");
 
